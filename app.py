@@ -14,7 +14,7 @@ options = [{'label':i,'value':i} for i in dict(get_tickers()).values()]
 df = get_prices("VTR")
 
 
-def generate_table(dataframe, max_rows=100):
+def generate_table(dataframe, max_rows=102):
     return html.Table([
         html.Thead(
             html.Tr([html.Th(col) for col in dataframe.columns])
