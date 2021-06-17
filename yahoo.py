@@ -12,7 +12,6 @@ def get_prices(ticker : str = "", start: datetime= None , end: datetime=None) ->
 
     return yf.Ticker(ticker).history(period='1d', start=start, end=end)
 
-print(get_prices("VTR"))
 
 
 
