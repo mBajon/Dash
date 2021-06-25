@@ -27,15 +27,21 @@ def generate_table(dataframe, max_rows=10):
         ])
     ],id="prices-table")
 
+fig = px.line(get_prices("VTR")["Close"])
 
-app.layout=html.Div([html.Label('Dropdown'),
+
+app.layout=html.Div([
+                    html.Label('Dropdown'),
                     dcc.Dropdown(id="stock-name-dropdown",
                     options=options,
                     value='mtl'),
                     html.Label('Select Dropdown'),
                     html.Div(children=[
                     html.H4(id='table-title'),
-                    generate_table(df)
+                    generate_table(df),
+                    dcc.Graph(id='prices-chart',
+                    figure=fig)
+                    
 ])
 ])
 
@@ -49,6 +55,14 @@ def update_table(selected_stock):
     return fig
 
 @app.callback(
+   Output('prices-chart', 'figure'),
+   Input('stock-name-dropdown', 'value'))
+def update_table(selected_stock):
+        
+   fig = px.line(get_prices(selected_stock)["Close"])
+   return fig
+
+@app.callback(
     Output(component_id='table-title', component_property='children'),
     Input(component_id='stock-name-dropdown', component_property='value')
 )
@@ -57,5 +71,7 @@ def update_table_title(input_value):
 
 if __name__=='__main__':
     app.run_server(debug=True)
+
+
 
 
