@@ -45,29 +45,20 @@ app.layout=html.Div([
 ])
 ])
 
-@app.callback(
-    Output('prices-table', 'children'),
-    Input('stock-name-dropdown', 'value'))
-def update_table(selected_stock):
-    filtered_df = get_prices(selected_stock)
-    fig = generate_table(filtered_df)
-
-    return fig
-
-@app.callback(
-   Output('prices-chart', 'figure'),
-   Input('stock-name-dropdown', 'value'))
-def update_table(selected_stock):
-        
-   fig = px.line(get_prices(selected_stock)["Close"])
-   return fig
-
-@app.callback(
+@app.callback([
     Output(component_id='table-title', component_property='children'),
+    Output('prices-table', 'children'),
+    Output('prices-chart', 'figure')],
     Input(component_id='stock-name-dropdown', component_property='value')
 )
-def update_table_title(input_value):
-    return 'Prices of: {}'.format(input_value)
+def update_table_title(selected_stock):
+    filtered_df = get_prices(selected_stock)
+    price_table = generate_table(filtered_df)
+    fig = px.line(filtered_df["Close"])
+    fig.update_layout(transition_duration=500)
+
+    return 'Prices of: {}'.format(selected_stock), price_table, fig
+
 
 if __name__=='__main__':
     app.run_server(debug=True)
