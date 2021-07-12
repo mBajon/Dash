@@ -40,21 +40,11 @@ style_cell_conditional=[
                         {'if': {'column_id': 'Stock Splits'},
                         'width': '5%'},
                         {'if': {'column_id': 'Dividends'},
-                        'width': '30%'}
+                        'width': '5%'}
                         ]
 
 
-def generate_table(dataframe, max_rows=10):
-    return html.Table([
-        html.Thead(
-            html.Tr([html.Th(col) for col in dataframe.columns])
-        ),
-        html.Tbody([
-            html.Tr([
-                html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-            ]) for i in range(min(len(dataframe), max_rows))
-        ])
-    ],id="prices-table")
+
 
 fig = px.line(get_prices("VTR")["Close"])
 
@@ -67,7 +57,6 @@ app.layout=html.Div([
                     html.Label('Select Dropdown'),
                     html.Div(children=[
                     html.H4(id='table-title'),
-                    generate_table(df),
                     html.Div(
                     dash_table.DataTable(
                                         id='table',
@@ -77,11 +66,28 @@ app.layout=html.Div([
                                         style_cell_conditional=style_cell_conditional
                                         ),
                                         style = {
-                                        "width":"150px"
+                                        "width":"800px"
                                         }
                             ),
-                    dcc.Graph(id='prices-chart',
-                    figure=fig)
+                    dcc.Graph(id='prices-chart',figure=fig),
+                    dcc.Slider(
+                                id='year-slider',
+                                min=1,
+                                max=7,
+                                value=1,
+                                marks={
+                                        1: {'label': '1d'},
+                                        2: {'label': '7d'},
+                                        3: {'label': '1m'},
+                                        4: {'label': '3m'},
+                                        4: {'label': '6m'},
+                                        5: {'label': '1y'},
+                                        6: {'label': '3y'},
+                                        7: {'label': '5y'}
+                                    },
+                                step=1,
+
+                            )
                     
 ])
 ]
@@ -89,18 +95,16 @@ app.layout=html.Div([
 
 @app.callback([
     Output(component_id='table-title', component_property='children'),
-    Output('prices-table', 'children'),
     Output('table', 'data'),
     Output('prices-chart', 'figure')],
     Input(component_id='stock-name-dropdown', component_property='value')
 )
 def update_data(selected_stock):
     filtered_df = get_prices(selected_stock)
-    price_table = generate_table(filtered_df)
     fig = px.line(filtered_df["Close"])
     fig.update_layout(transition_duration=500)
 
-    return 'Prices of: {}'.format(selected_stock), price_table, filtered_df.to_dict('records') ,fig
+    return 'Prices of: {}'.format(selected_stock), filtered_df.to_dict('records') ,fig
 
 
 if __name__=='__main__':

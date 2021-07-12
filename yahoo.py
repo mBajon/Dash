@@ -9,5 +9,3 @@ def get_prices(ticker : str = "", start: datetime= None , end: datetime=None) ->
         start = end - datetime.timedelta(days=600)
 
     return yf.Ticker(ticker).history(period='1d', start=start, end=end)
-
-
