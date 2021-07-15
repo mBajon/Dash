@@ -76,14 +76,14 @@ app.layout=html.Div([
                                 max=7,
                                 value=1,
                                 marks={
-                                        1: {'label': '1d'},
-                                        2: {'label': '7d'},
-                                        3: {'label': '1m'},
-                                        4: {'label': '3m'},
+                                        1: {'label': '5y'},   
+                                        2: {'label': '3y'},
+                                        3: {'label': '1y'}, 
                                         4: {'label': '6m'},
-                                        5: {'label': '1y'},
-                                        6: {'label': '3y'},
-                                        7: {'label': '5y'}
+                                        4: {'label': '3m'},
+                                        5: {'label': '1m'},
+                                        6: {'label': '7d'},
+                                        7: {'label': '1d'},
                                     },
                                 step=1,
 
@@ -97,7 +97,7 @@ app.layout=html.Div([
     Output(component_id='table-title', component_property='children'),
     Output('table', 'data'),
     Output('prices-chart', 'figure')],
-    Input(component_id='stock-name-dropdown', component_property='value')
+    Input(component_id='year-slider', component_property='value')
 )
 def update_data(selected_stock):
     filtered_df = get_prices(selected_stock)
@@ -105,6 +105,20 @@ def update_data(selected_stock):
     fig.update_layout(transition_duration=500)
 
     return 'Prices of: {}'.format(selected_stock), filtered_df.to_dict('records') ,fig
+
+
+@app.callback(
+    Output('prices-chart', 'figure'),
+    Input(component_id='year-slider', component_property='value')
+)
+def update_chart(time_frame):
+
+    filtered_df = df.last(time_frame)
+    fig = px.line(filtered_df["Close"])
+
+    return fig
+
+
 
 
 if __name__=='__main__':
