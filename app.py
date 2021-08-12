@@ -100,7 +100,14 @@ app.layout=html.Div([
     Input(component_id='year-slider', component_property='value')
 )
 def update_data(selected_stock):
-    filtered_df = get_prices(selected_stock)
+    ctx = dash.callback_context
+
+    if not ctx.triggered:
+       filtered_df = get_prices(selected_stock)
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+
+    #filtered_df = get_prices(selected_stock)
     fig = px.line(filtered_df["Close"])
     fig.update_layout(transition_duration=500)
 
