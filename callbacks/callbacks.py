@@ -2,8 +2,8 @@ import dash
 from dash.dependencies import Input, Output
 import plotly.express as px
 from app import app
-from layouts import df
-from yahoo import get_prices
+from layouts.layouts import df
+from helpers.yahoo import get_prices
 
 @app.callback([
     Output(component_id='table-title', component_property='children'),

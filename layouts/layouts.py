@@ -4,8 +4,8 @@ import dash_html_components as html
 from dash_html_components.Tr import Tr
 import plotly.express as px
 import dash_table
-from sp500 import get_tickers
-from yahoo import get_prices
+from helpers.sp500 import get_tickers
+from helpers.yahoo import get_prices
 
 
 df = get_prices("VTR")
