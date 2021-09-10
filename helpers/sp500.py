@@ -5,3 +5,6 @@ def get_tickers():
     df = table[0]
     return df['Symbol'].copy()
 
+print(get_tickers("VTR"))
+
+print("hello")
