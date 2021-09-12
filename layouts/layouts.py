@@ -5,15 +5,28 @@ from dash_html_components.Tr import Tr
 import plotly.express as px
 import dash_table
 from helpers.sp500 import get_tickers
-from helpers.yahoo import get_prices
+from helpers.yahoo import TickerData
+#from callbacks.callbacks import generate_table
 
 
-df = get_prices("VTR")
+df = TickerData("VTR").get_prices()
 
 
 fig = px.line(df["Close"])
 
 options = [{'label':i,'value':i} for i in dict(get_tickers()).values()]
+
+def generate_table(data, max_rows=10):
+    return html.Table([
+        html.Thead(
+            html.Tr([html.Th(col) for col in data.keys()])
+        ),
+        html.Tbody([
+            html.Tr([
+                html.Td(data[col]) for col in  data.keys()
+            ])
+        ])
+    ])
 
 layout=html.Div([
                     html.Label('Dropdown'),
@@ -35,6 +48,7 @@ layout=html.Div([
                                         "width":"800px"
                                         }
                             ),
+                    generate_table(TickerData("VTR").get_basic_info()),
                     dcc.Graph(id='prices-chart',figure=fig),
                     dcc.Slider(
                                 id='year-slider',

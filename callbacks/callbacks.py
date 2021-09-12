@@ -1,9 +1,10 @@
 import dash
 from dash.dependencies import Input, Output
+import dash_html_components as html
 import plotly.express as px
 from app import app
 from layouts.layouts import df
-from helpers.yahoo import get_prices
+from helpers.yahoo import TickerData
 
 @app.callback([
     Output(component_id='table-title', component_property='children'),
@@ -29,7 +30,7 @@ def update_data(selected_stock, time_frame):
     ctx = dash.callback_context
 
     if ctx.triggered[0]['prop_id']=='stock-name-dropdown.value' :
-        filtered_df = get_prices(selected_stock).last(time_frames[time_frame])
+        filtered_df = TickerData(selected_stock).get_prices().last(time_frames[time_frame])
         fig = px.line(filtered_df["Close"])
 
     else:
@@ -38,3 +39,4 @@ def update_data(selected_stock, time_frame):
             fig = px.line(filtered_df["Close"])
         
     return 'Prices of: {}'.format(selected_stock), filtered_df.to_dict('records') ,fig
+

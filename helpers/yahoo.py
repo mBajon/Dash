@@ -18,10 +18,10 @@ class TickerData():
         
         return self.ticker.history(period='1d', start=start, end=end)
 
-    def get_basic_info(self, field):
-        return self.ticker.info[field]
+    def get_basic_info(self):
+        return self.ticker.info
 
 
-print(TickerData("VTR").get_basic_info('sector'))
+
 
 
