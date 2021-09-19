@@ -18,10 +18,10 @@ class TickerData():
         
         return self.ticker.history(period='1d', start=start, end=end)
 
-    def get_basic_info(self):
-        return self.ticker.info
+    def get_basic_info(self, info:list) -> dict:
+        return {i : self.ticker.info[i] for i in info}
 
 
 
 
-
+#print(TickerData("VTR").get_basic_info(['zip', 'sector', 'fullTimeEmployees', 'longBusinessSummary']))

@@ -39,4 +39,3 @@ def update_data(selected_stock, time_frame):
             fig = px.line(filtered_df["Close"])
         
     return 'Prices of: {}'.format(selected_stock), filtered_df.to_dict('records') ,fig
-

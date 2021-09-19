@@ -1,6 +1,9 @@
 import dash_table.FormatTemplate as FormatTemplate
+import dash_bootstrap_components as dbc
 
-EXTERNAL_STYLESHEETS = ['https://codepen.io/chriddyp/pen/bWlwgP.css']
+EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP]
+
+TABLE_STYLE = []
 COLUMNS = [
             {"name": "Open", "id": "Open", 'type': 'numeric','format': FormatTemplate.money(2)},
             {"name": "High", "id": "High", 'type': 'numeric','format': FormatTemplate.money(2)},
