@@ -1,4 +1,4 @@
-from constants import COLUMNS, STYLE_CELL_CONDITIONAL
+from constants import COLUMNS, STYLE_CELL_CONDITIONAL, TABLE_STYLE, DATABLE_STYLE
 import dash_core_components as dcc
 import dash_html_components as html
 from dash_html_components.Tr import Tr
@@ -51,11 +51,11 @@ layout=html.Div([
                                             style_cell_conditional=STYLE_CELL_CONDITIONAL,
                                             style_table = {'display': 'inline-block'}
                                                     ),
-                                            style={'display': 'inline-block',"position":"relative","left":"40px"}
+                                            style=DATABLE_STYLE
                             ),
                     html.Div(           
                         generate_table(TickerData("VTR").get_basic_info(['country','exchange', 'sector', 'fullTimeEmployees', 'marketCap'])),
-                        style={'display': 'inline-block', "vertical-align":"top","position":"relative","top":"18px",'margin-left':'50px'}
+                        style=TABLE_STYLE
                     )
                                         ],
                             ),

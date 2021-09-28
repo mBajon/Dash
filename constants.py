@@ -3,7 +3,8 @@ import dash_bootstrap_components as dbc
 
 EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP]
 
-TABLE_STYLE = []
+TABLE_STYLE = {'display': 'inline-block', "vertical-align":"top","position":"relative","top":"18px",'margin-left':'50px'}
+DATABLE_STYLE = {'display': 'inline-block',"position":"relative","left":"40px"}
 COLUMNS = [
             {"name": "Open", "id": "Open", 'type': 'numeric','format': FormatTemplate.money(2)},
             {"name": "High", "id": "High", 'type': 'numeric','format': FormatTemplate.money(2)},
