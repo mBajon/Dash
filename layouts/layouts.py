@@ -1,49 +1,29 @@
 from constants import COLUMNS, STYLE_CELL_CONDITIONAL, TABLE_STYLE, DATABLE_STYLE
 import dash_core_components as dcc
 import dash_html_components as html
-from dash_html_components.Tr import Tr
-import dash_bootstrap_components as dbc
 import plotly.express as px
 import dash_table
 from helpers.sp500 import get_tickers
 from helpers.yahoo import TickerData
-#from callbacks.callbacks import generate_table
+from layouts.table_layouts import generate_table
 
 
 df = TickerData("VTR").get_prices()
-
-
 fig = px.line(df["Close"])
-
 options = [{'label':i,'value':i} for i in dict(get_tickers()).values()]
 
-def generate_table(data):
-    return dbc.Table([
-        html.Thead(
-            html.Tr([
-                html.Th("key"),
-                html.Th("value")
-                ])
-        ),
-        html.Tbody([
-                html.Tr([html.Td(i), html.Td(data[i])]) for i in data.keys()
-            ])
-    ],
-    bordered=True,
-    striped= True
-    )
+
 
 layout=html.Div([
-                    html.Label('Dropdown'), 
+                    html.Label(' Select dropdown'), 
                     dcc.Dropdown(id="stock-name-dropdown",
                     options=options,
                     value='VTR'),
-                    html.Label('Select Dropdown'),
                     html.Div(children=[
-                    html.H4(id='table-title'),
-                    html.Div(children=[
-                    html.Div(           
-                                dash_table.DataTable(
+                        html.H4(id='table-title'),
+                            html.Div(children=[
+                                    html.Div(                   
+                                        dash_table.DataTable(
                                             id='table',
                                             columns=COLUMNS,
                                             data=df.to_dict('records'),
@@ -52,14 +32,15 @@ layout=html.Div([
                                             style_table = {'display': 'inline-block'}
                                                     ),
                                             style=DATABLE_STYLE
-                            ),
-                    html.Div(           
-                        generate_table(TickerData("VTR").get_basic_info(['country','exchange', 'sector', 'fullTimeEmployees', 'marketCap'])),
-                        style=TABLE_STYLE
-                    )
-                                        ],
-                            ),
-                    
+                                            ),
+                                            html.Div(           
+                                                    generate_table(TickerData("VTR").get_basic_info(['country','exchange', 'sector', 'fullTimeEmployees', 'marketCap']), ['key','value']),
+                                                    style=TABLE_STYLE
+                                                    ),
+                                            html.Div(           
+                                                    generate_table(TickerData("VTR").get_returns(),  ['range','returns']),
+                                                    style=TABLE_STYLE)
+                                                ]),
                     dcc.Graph(id='prices-chart',figure=fig),
                     dcc.Slider(
                                 id='year-slider',
@@ -76,9 +57,6 @@ layout=html.Div([
                                         6: {'label': '7d'}
                                     },
                                 step=1,
-
-                            )
-                    
-])
-]
-)
+                                )
+                                    ])              
+                ])

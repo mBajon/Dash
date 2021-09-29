@@ -1,0 +1,17 @@
+import dash_html_components as html
+import dash_bootstrap_components as dbc
+
+
+def generate_table(data : dict, headers: list):
+    return dbc.Table([
+        html.Thead(
+            html.Tr([
+                html.Th(headers[0]),
+                html.Th(headers[1])
+                ])
+        ),
+        html.Tbody([
+                html.Tr([html.Td(i), html.Td(data[i])]) for i in data.keys()
+                ])],
+    bordered=True,
+    striped= True)

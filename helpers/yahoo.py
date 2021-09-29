@@ -21,15 +21,13 @@ class TickerData():
     def get_basic_info(self, info:list) -> dict:
         return {i : self.ticker.info[i] for i in info}
     
-    def get_returns(self, ):
+    def get_returns(self):
         df = self.get_prices()
         time_frames = ['7d','1m','3m','6m','1y','3y','5y']
         returns = {}
         for tf in time_frames:
             dff=df.last(tf)
-            returns[tf]=("{:.2%}".format((dff["Close"].iloc[-1]/dff["Close"].iloc[0])-1))
+            returns[tf]=("{:.2%}".format((dff["Close"].iloc[-1] / dff["Close"].iloc[0]) - 1))
 
         return returns
         
-
-TickerData("VTR").get_returns()
