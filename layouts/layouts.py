@@ -1,6 +1,6 @@
 from constants import COLUMNS, STYLE_CELL_CONDITIONAL, TABLE_STYLE, DATABLE_STYLE
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 import plotly.express as px
 import dash_table
 from helpers.sp500 import get_tickers
@@ -35,11 +35,12 @@ layout=html.Div([
                                             ),
                                             html.Div(           
                                                     generate_table(TickerData("VTR").get_basic_info(['country','exchange', 'sector', 'fullTimeEmployees', 'marketCap']), ['key','value']),
-                                                    style=TABLE_STYLE
+                                                    style=TABLE_STYLE,id='basic_info'
                                                     ),
                                             html.Div(           
                                                     generate_table(TickerData("VTR").get_returns(),  ['range','returns']),
-                                                    style=TABLE_STYLE)
+                                                    style=TABLE_STYLE,
+                                                    id='returns')
                                                 ]),
                     dcc.Graph(id='prices-chart',figure=fig),
                     dcc.Slider(
