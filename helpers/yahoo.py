@@ -31,3 +31,4 @@ class TickerData():
 
         return returns
         
+#TickerData("VTR").get_basic_info(["zip"])

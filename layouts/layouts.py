@@ -10,7 +10,7 @@ from layouts.table_layouts import generate_table
 
 df = TickerData("VTR").get_prices()
 fig = px.line(df["Close"])
-options = [{'label':i,'value':i} for i in dict(get_tickers()).values()]
+options = [{'label':i[1]['Security'],'value':i[1]['Symbol']} for i in get_tickers().iterrows()]
 
 
 
@@ -18,7 +18,8 @@ layout=html.Div([
                     html.Label(' Select dropdown'), 
                     dcc.Dropdown(id="stock-name-dropdown",
                     options=options,
-                    value='VTR'),
+                    value='VTR',
+                    style={'width':'40%'}),
                     html.Div(children=[
                         html.H4(id='table-title'),
                             html.Div(children=[
@@ -34,11 +35,9 @@ layout=html.Div([
                                             style=DATABLE_STYLE
                                             ),
                                             html.Div(           
-                                                    generate_table(TickerData("VTR").get_basic_info(['country','exchange', 'sector', 'fullTimeEmployees', 'marketCap']), ['key','value']),
                                                     style=TABLE_STYLE,id='basic_info'
                                                     ),
                                             html.Div(           
-                                                    generate_table(TickerData("VTR").get_returns(),  ['range','returns']),
                                                     style=TABLE_STYLE,
                                                     id='returns')
                                                 ]),

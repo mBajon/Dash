@@ -40,19 +40,6 @@ def update_data(selected_stock, time_frame):
         
     return 'Prices of: {}'.format(selected_stock), filtered_df.to_dict('records') ,fig
 
-@app.callback(
-    Output(component_id='returns', component_property='children'),
-    Input(component_id='stock-name-dropdown', component_property='value')
-    ) 
-def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_returns(),  ['range','returns'])
-
-@app.callback(
-    Output(component_id='basic_info', component_property='children'),
-    Input(component_id='stock-name-dropdown', component_property='value')
-    ) 
-def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_basic_info(['country','exchange', 'sector', 'fullTimeEmployees', 'marketCap']), ['key','value'])
 
 
 
