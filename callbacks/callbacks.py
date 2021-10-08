@@ -4,7 +4,7 @@ import plotly.express as px
 from app import app
 from layouts.layouts import df
 from layouts.table_layouts import generate_table
-from helpers.yahoo import TickerData
+from utils.yahoo import TickerData
 
 @app.callback([
     Output(component_id='table-title', component_property='children'),

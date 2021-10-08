@@ -1,5 +1,5 @@
 import dash
-from constants import EXTERNAL_STYLESHEETS
+from utils.constants import EXTERNAL_STYLESHEETS
 
-app= dash.Dash(__name__, external_stylesheets=EXTERNAL_STYLESHEETS)
+app= dash.Dash(__name__)
 server = app.server

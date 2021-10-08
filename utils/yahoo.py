@@ -3,6 +3,8 @@ from pandas.core.frame import DataFrame
 import yfinance as yf
 import datetime
 from dateutil.relativedelta import relativedelta
+from utils.constants import FIELD_MAP
+
 
 
 class TickerData():
@@ -19,7 +21,7 @@ class TickerData():
         return self.ticker.history(period='1d', start=start, end=end)
 
     def get_basic_info(self, info:list) -> dict:
-        return {i : self.ticker.info[i] for i in info}
+        return {FIELD_MAP[i] : self.ticker.info[i] for i in info}
     
     def get_returns(self):
         df = self.get_prices()
@@ -30,5 +32,5 @@ class TickerData():
             returns[tf]=("{:.2%}".format((dff["Close"].iloc[-1] / dff["Close"].iloc[0]) - 1))
 
         return returns
+
         
-#TickerData("VTR").get_basic_info(["zip"])

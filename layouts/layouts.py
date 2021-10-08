@@ -1,11 +1,12 @@
-from constants import COLUMNS, STYLE_CELL_CONDITIONAL, TABLE_STYLE, DATABLE_STYLE
+from utils.constants import COLUMNS, STYLE_CELL_CONDITIONAL, TABLE_STYLE, DATABLE_STYLE
 from dash import dcc
 from dash import html
 import plotly.express as px
 import dash_table
-from helpers.sp500 import get_tickers
-from helpers.yahoo import TickerData
+from utils.sp500 import get_tickers
+from utils.yahoo import TickerData
 from layouts.table_layouts import generate_table
+import dash_bootstrap_components as dbc
 
 
 df = TickerData("VTR").get_prices()
@@ -15,7 +16,7 @@ options = [{'label':i[1]['Security'],'value':i[1]['Symbol']} for i in get_ticker
 
 
 layout=html.Div([
-                    html.Label(' Select dropdown'), 
+                    html.Label(' Select dropdown'),
                     dcc.Dropdown(id="stock-name-dropdown",
                     options=options,
                     value='VTR',
@@ -36,6 +37,9 @@ layout=html.Div([
                                             ),
                                             html.Div(           
                                                     style=TABLE_STYLE,id='basic_info'
+                                                    ),
+                                            html.Div(           
+                                                    style=TABLE_STYLE,id='price_action'
                                                     ),
                                             html.Div(           
                                                     style=TABLE_STYLE,

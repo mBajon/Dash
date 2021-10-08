@@ -31,3 +31,20 @@ STYLE_CELL_CONDITIONAL=[
                         {'if': {'column_id': 'Dividends'},
                         'width': '5%'}
                         ]
+
+FIELD_MAP = {
+    'fiftyTwoWeekHigh':'52 Week High',
+    'fiftyTwoWeekLow':'52 Week Low',
+    'fiftyDayAverage':'50 Day Average',
+    'regularMarketVolume':'Regular Market Volume',
+    'averageDailyVolume10Day':'Average Daily Volumne in 10 days',
+    'volume24Hr':'Vloume',
+    'longName':'Name',
+    'country':'Country',
+    'exchange':'Exchange',
+    'sector':'Sector',
+    'industry':'Industry',
+    'fullTimeEmployees':'Full Time Employees',
+    'marketCap':'Market Capitalization',
+}
+
