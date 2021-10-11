@@ -6,8 +6,7 @@ def generate_table(data : dict, headers: list)-> None:
     return dbc.Table([
         html.Thead(
             html.Tr([
-                html.Th(headers[0]),
-                html.Th(headers[1])
+                html.Th(headers[0], colSpan=2)
                 ])
         ),
         html.Tbody([

@@ -12,18 +12,18 @@ from utils.yahoo import TickerData
     Input(component_id='stock-name-dropdown', component_property='value')
     ) 
 def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_returns(),  ['range','returns'])
+    return generate_table(TickerData(selected_stock).get_returns(),  ['Returns'])
 
 @app.callback(
     Output(component_id='basic_info', component_property='children'),
     Input(component_id='stock-name-dropdown', component_property='value')
     ) 
 def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_basic_info(['longName','country','exchange', 'sector','industry', 'fullTimeEmployees', 'marketCap']), ['key','value'])
+    return generate_table(TickerData(selected_stock).get_basic_info(['longName','country','exchange', 'sector','industry', 'fullTimeEmployees', 'marketCap']), ['General Info'])
 
 @app.callback(
     Output(component_id='price_action', component_property='children'),
     Input(component_id='stock-name-dropdown', component_property='value')
     ) 
 def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_basic_info(['fiftyTwoWeekHigh','fiftyTwoWeekLow','fiftyDayAverage', 'regularMarketVolume','averageDailyVolume10Day', 'volume24Hr']), ['key','value'])
+    return generate_table(TickerData(selected_stock).get_basic_info(['fiftyTwoWeekHigh','fiftyTwoWeekLow','fiftyDayAverage', 'regularMarketVolume','averageDailyVolume10Day', 'volume24Hr']), ['Trading Data'])
