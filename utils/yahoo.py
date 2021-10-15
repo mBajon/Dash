@@ -33,4 +33,7 @@ class TickerData():
 
         return returns
 
+    def get_earnings(self) -> DataFrame:
+        return self.ticker.earnings
+
         

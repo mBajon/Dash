@@ -1,7 +1,8 @@
-""" import yfinance as yf
+import yfinance as yf
+
+from utils.yahoo import TickerData
 
 msft = yf.Ticker("MSFT")
 print(msft.earnings)
-print(msft.quarterly_earnings)
-print(msft.financials)
- """
+print(TickerData("MSFT").get_earnings())
+
