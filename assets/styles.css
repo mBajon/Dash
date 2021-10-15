@@ -1,6 +1,6 @@
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 50%;
   }
   
   th, td {
@@ -23,4 +23,12 @@ table {
     color: black;
     border-bottom: 2px solid black;
     border-left: none;
+    text-align: center;
   }
+.table-div-wrapper{
+  display: inline-block;
+  vertical-align:top;
+  position:relative;
+  top:18px;
+  margin-left:50px 
+}

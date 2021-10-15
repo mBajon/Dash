@@ -1,29 +1,33 @@
-
 import dash
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output,State, MATCH
 import plotly.express as px
 from app import app
 from layouts.layouts import df
 from layouts.table_layouts import generate_table
 from utils.yahoo import TickerData
+from utils.constants import GENERAL_INFO, TRADING_DATA
+import dash_html_components as html
+
 
 @app.callback(
-    Output(component_id='returns', component_property='children'),
-    Input(component_id='stock-name-dropdown', component_property='value')
-    ) 
-def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_returns(),  ['Returns'])
+    Output('dynamic-tables-container', 'children'),
+    Input(component_id='stock-name-dropdown', component_property='value'),
+    State('dynamic-tables-container', 'children')
+    )
+def display_dropdowns(selected_stock, children):
+    new_element = html.Div([
+    html.Div(
+        generate_table(TickerData(selected_stock).get_basic_info(TRADING_DATA), ['Trading Data']),
+        className = 'table-div-wrapper'
+    ),
+     html.Div(
+         generate_table(TickerData(selected_stock).get_basic_info(GENERAL_INFO), ['General Info']),
+        className = 'table-div-wrapper'
+    ),
+    html.Div(
+        generate_table(TickerData(selected_stock).get_returns(),  ['Returns']),
+        className = 'table-div-wrapper'
+    )
+    ])
+    return new_element
 
-@app.callback(
-    Output(component_id='basic_info', component_property='children'),
-    Input(component_id='stock-name-dropdown', component_property='value')
-    ) 
-def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_basic_info(['longName','country','exchange', 'sector','industry', 'fullTimeEmployees', 'marketCap']), ['General Info'])
-
-@app.callback(
-    Output(component_id='price_action', component_property='children'),
-    Input(component_id='stock-name-dropdown', component_property='value')
-    ) 
-def update_table(selected_stock):
-    return generate_table(TickerData(selected_stock).get_basic_info(['fiftyTwoWeekHigh','fiftyTwoWeekLow','fiftyDayAverage', 'regularMarketVolume','averageDailyVolume10Day', 'volume24Hr']), ['Trading Data'])

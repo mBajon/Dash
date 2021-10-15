@@ -12,5 +12,9 @@ def generate_table(data : dict, headers: list)-> None:
         html.Tbody([
                 html.Tr([html.Td(i), html.Td(data[i])]) for i in data.keys()
                 ])],
-    className = 'table'
+    className = 'table',
+    id={
+        'type': 'dynamic-table',
+        'index': headers[0]
+        }
     )

@@ -21,7 +21,7 @@ class TickerData():
         return self.ticker.history(period='1d', start=start, end=end)
 
     def get_basic_info(self, info:list) -> dict:
-        return {FIELD_MAP[i] : self.ticker.info[i] for i in info}
+        return {FIELD_MAP[i] : self.ticker.info[i] for i in info if i in FIELD_MAP}
     
     def get_returns(self):
         df = self.get_prices()

@@ -6,10 +6,8 @@ from layouts.layouts import df
 from layouts.table_layouts import generate_table
 from utils.yahoo import TickerData
 
-@app.callback([
-    Output(component_id='table-title', component_property='children'),
-    Output('table', 'data'),
-    Output('prices-chart', 'figure')],
+@app.callback(
+    Output('prices-chart', 'figure'),
     Input(component_id='stock-name-dropdown', component_property='value'),
     Input(component_id='year-slider', component_property='value')
     
@@ -38,7 +36,7 @@ def update_data(selected_stock, time_frame):
             filtered_df = df.last(time_frames[time_frame])
             fig = px.line(filtered_df["Close"])
         
-    return 'Prices of: {}'.format(selected_stock), filtered_df.to_dict('records') ,fig
+    return fig
 
 
 
