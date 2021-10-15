@@ -21,7 +21,7 @@ layout=html.Div([
                                value='VTR',
                                style={'width':'40%'}),
                 html.Div(           
-                         id='dynamic-tables-container', children = []
+                         id='dynamic-tables-container', children = [],
                 ),
                 html.Div(children=[
                                     dcc.Graph(id='prices-chart',figure=fig),

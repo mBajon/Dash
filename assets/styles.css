@@ -1,6 +1,7 @@
 table {
     border-collapse: collapse;
-    width: 50%;
+    padding-bottom: 30px;
+    width: 100%;
   }
   
   th, td {
@@ -30,5 +31,6 @@ table {
   vertical-align:top;
   position:relative;
   top:18px;
-  margin-left:50px 
+  margin-left:50px;
+  margin-bottom:25px;
 }
