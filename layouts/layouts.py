@@ -5,7 +5,9 @@ import dash_table
 from utils.sp500 import get_tickers
 from utils.yahoo import TickerData
 from layouts.table_layouts import generate_table
+from layouts.bar_chart_layouts import bar_chart
 import dash_bootstrap_components as dbc
+
 
 
 df = TickerData("VTR").get_prices()
@@ -41,5 +43,6 @@ layout=html.Div([
                                                 },
                                                 step=1,
                                     )
-                    ])              
+                    ]),
+                bar_chart                 
 ])

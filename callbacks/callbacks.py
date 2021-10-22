@@ -25,6 +25,12 @@ def update_data(selected_stock, time_frame):
     
     filtered_df = df
     fig = px.line(filtered_df["Close"])
+    fig.update_layout(
+                    {
+                    'plot_bgcolor': 'rgba(0,0,0,0)'
+                    })
+    fig.update_xaxes(showgrid=False)
+    fig.update_yaxes(showgrid=False)
     ctx = dash.callback_context
 
     if ctx.triggered[0]['prop_id']=='stock-name-dropdown.value' :

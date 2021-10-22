@@ -1,7 +1,4 @@
-from dash_table import FormatTemplate
-import dash_bootstrap_components as dbc
-
-EXTERNAL_STYLESHEETS = [dbc.themes.BOOTSTRAP]
+EXTERNAL_STYLESHEETS = []
 FIELD_MAP = {
     'fiftyTwoWeekHigh':'52 Week High',
     'fiftyTwoWeekLow':'52 Week Low',

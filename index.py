@@ -1,5 +1,6 @@
 import callbacks.callbacks
 import callbacks.table_callbacks
+import callbacks.bar_chart_callbacks
 from layouts.layouts import layout
 from app import app
 
