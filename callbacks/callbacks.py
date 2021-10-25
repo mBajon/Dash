@@ -25,23 +25,33 @@ def update_data(selected_stock, time_frame):
     
     filtered_df = df
     fig = px.line(filtered_df["Close"])
+    style_fig(fig)
+
+    ctx = dash.callback_context
+
+    if ctx.triggered[0]['prop_id']=='stock-name-dropdown.value' :
+        filtered_df = TickerData(selected_stock).get_prices().last(time_frames[time_frame])
+        fig = px.line(filtered_df["Close"])
+        style_fig(fig)
+
+    else:
+        if ctx.triggered[0]['prop_id']=='year-slider.value':
+            filtered_df = df.last(time_frames[time_frame])
+            fig = px.line(filtered_df["Close"])
+            style_fig(fig)
+        
+    return fig
+
+def style_fig(fig):
+    fig=fig
     fig.update_layout(
                     {
                     'plot_bgcolor': 'rgba(0,0,0,0)'
                     })
     fig.update_xaxes(showgrid=False)
     fig.update_yaxes(showgrid=False)
-    ctx = dash.callback_context
+    fig.update_traces(line_color='#456987')
 
-    if ctx.triggered[0]['prop_id']=='stock-name-dropdown.value' :
-        filtered_df = TickerData(selected_stock).get_prices().last(time_frames[time_frame])
-        fig = px.line(filtered_df["Close"])
-
-    else:
-        if ctx.triggered[0]['prop_id']=='year-slider.value':
-            filtered_df = df.last(time_frames[time_frame])
-            fig = px.line(filtered_df["Close"])
-        
     return fig
 
 

@@ -6,8 +6,6 @@ from utils.yahoo import TickerData
 df = TickerData("VTR").get_earnings()
 chart = px.bar(data_frame=df, x = df.index,y = ['Earnings','Revenue'], barmode='group')
 
-
-
 bar_chart = html.Div(
                         dcc.Graph(id = 'dupa-chart', figure = chart)
 )

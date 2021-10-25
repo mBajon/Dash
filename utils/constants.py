@@ -1,4 +1,13 @@
 EXTERNAL_STYLESHEETS = []
+MARKS ={
+        1: {'label': '5y'},   
+        2: {'label': '3y'},
+        3: {'label': '1y'}, 
+        4: {'label': '6m'},
+        5: {'label': '3m'},
+        6: {'label': '1m'},
+        7: {'label': '7d'}
+}
 FIELD_MAP = {
     'fiftyTwoWeekHigh':'52 Week High',
     'fiftyTwoWeekLow':'52 Week Low',

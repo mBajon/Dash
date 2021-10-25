@@ -7,6 +7,7 @@ from utils.yahoo import TickerData
 from layouts.table_layouts import generate_table
 from layouts.bar_chart_layouts import bar_chart
 import dash_bootstrap_components as dbc
+from utils.constants import MARKS
 
 
 
@@ -32,15 +33,7 @@ layout=html.Div([
                                                 min=1,
                                                 max=6,
                                                 value=1,
-                                                marks={
-                                                        1: {'label': '5y'},   
-                                                        2: {'label': '3y'},
-                                                        3: {'label': '1y'}, 
-                                                        4: {'label': '6m'},
-                                                        4: {'label': '3m'},
-                                                        5: {'label': '1m'},
-                                                        6: {'label': '7d'}
-                                                },
+                                                marks=MARKS,
                                                 step=1,
                                     )
                     ]),
