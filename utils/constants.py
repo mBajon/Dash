@@ -8,6 +8,16 @@ MARKS ={
         6: {'label': '1m'},
         7: {'label': '7d'}
 }
+
+TIME_FRAMES= {
+        1:'5Y',
+        2:'3Y',
+        3:'6M',
+        4:'3M',
+        5:'1M',
+        6:'7D'
+    }
+
 FIELD_MAP = {
     'fiftyTwoWeekHigh':'52 Week High',
     'fiftyTwoWeekLow':'52 Week Low',
