@@ -14,7 +14,7 @@ import dash_html_components as html
     Input(component_id='stock-name-dropdown', component_property='value'),
     State('dynamic-tables-container', 'children')
     )
-def display_dropdowns(selected_stock, children):
+def display_tables(selected_stock, children):
     new_element = html.Div([
     html.Div(
         generate_table(TickerData(selected_stock).get_basic_info(TRADING_DATA), ['Trading Data']),

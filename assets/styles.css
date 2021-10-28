@@ -34,3 +34,8 @@ table {
   margin-left:50px;
   margin-bottom:25px;
 }
+.chart-div-wrapper{
+  display: inline-block;
+  vertical-align:top;
+  position:relative;
+}

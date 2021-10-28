@@ -2,6 +2,8 @@ from re import T
 from pandas.core.frame import DataFrame
 import yfinance as yf
 import datetime
+from datetime import date
+import numpy as np
 from dateutil.relativedelta import relativedelta
 from utils.constants import FIELD_MAP
 
@@ -35,5 +37,9 @@ class TickerData():
 
     def get_earnings(self) -> DataFrame:
         return self.ticker.earnings
-
+    
+    def get_recommendations(self)->DataFrame():
+        df = self.ticker.recommendations
+        this_year_start = np.datetime64(date(date.today().year, 1, 1))
+        return df[df.index > this_year_start].groupby(['To Grade']).size().reset_index(name='counts')
         

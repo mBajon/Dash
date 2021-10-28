@@ -5,7 +5,7 @@ import dash_table
 from utils.sp500 import get_tickers
 from utils.yahoo import TickerData
 from layouts.table_layouts import generate_table
-from layouts.bar_chart_layouts import bar_chart
+#from layouts.bar_chart_layouts import 
 import dash_bootstrap_components as dbc
 from utils.constants import MARKS
 
@@ -37,5 +37,7 @@ layout=html.Div([
                                                 step=1,
                                     )
                     ]),
-                bar_chart                 
+                html.Div(           
+                         id='dynamic-charts-container', children = []
+                )                                 
 ])
