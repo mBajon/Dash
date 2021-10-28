@@ -1,12 +1,8 @@
 from dash import dcc
 from dash import html
 import plotly.express as px
-import dash_table
 from utils.sp500 import get_tickers
 from utils.yahoo import TickerData
-from layouts.table_layouts import generate_table
-#from layouts.bar_chart_layouts import 
-import dash_bootstrap_components as dbc
 from utils.constants import MARKS
 
 

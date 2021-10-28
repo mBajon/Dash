@@ -1,8 +1,9 @@
-import dash
-from dash.dependencies import Input, Output,State, MATCH
+
+from dash.dependencies import Input, Output,State
 import plotly.express as px
 from app import app
 from utils.yahoo import TickerData
+from layouts.bar_chart_layouts import generate_bar_chart
 import plotly.express as px
 
 
@@ -11,15 +12,25 @@ import plotly.express as px
     Input(component_id='stock-name-dropdown', component_property='value'),
     State('dynamic-charts-container', 'children')
     )
-def display_earnings_chart(selected_stock):
-    df = TickerData("VTR").get_earnings()
-    df_r = TickerData("VTR").get_recommendations()
-    chart = px.bar(data_frame=df, x = df.index,y = ['Earnings','Revenue'], barmode='group',labels=['x','y'])
-    recomendations_chart = px.bar(data_frame=df_r, x = 'To Grade',y = 'counts', barmode='group',labels=['x','y'])
-    
+def display_bar_charts(selected_stock, children):
+
+##############################
+#earnings
     df = TickerData(selected_stock).get_earnings()
-    chart = px.bar(data_frame=df, x = df.index,y = ['Earnings','Revenue'], barmode='group',color_discrete_sequence =['rgb(0, 204, 102)','rgb(51, 153, 255)'],title='Earnings & Revenue',)
-    chart.update_layout(
+    figure = px.bar(data_frame=df, x = df.index,y = ['Earnings','Revenue'], barmode='group',color_discrete_sequence =['rgb(0, 204, 102)','rgb(51, 153, 255)'],title='Earnings & Revenue')
+    style_bar_chart(figure)
+    children.append(generate_bar_chart(figure,'earnings-chart'))
+##############################
+#recommendations
+    df = TickerData(selected_stock).get_recommendations()
+    figure = px.bar(data_frame=df, x = 'To Grade',y = 'counts', barmode='group',color_discrete_sequence =['rgb(0, 204, 102)'], labels=['x','y'])
+    style_bar_chart(figure)
+    children.append(generate_bar_chart(figure,'recommendations-chart'))
+
+    return children
+
+def style_bar_chart(fig):
+    fig.update_layout(
                         xaxis={
                         'dtick':1,
                         'showgrid':False
@@ -32,4 +43,4 @@ def display_earnings_chart(selected_stock):
                         yaxis_title=''
                         )
 
-    return chart
+    return fig
