@@ -6,7 +6,7 @@ from layouts.layouts import df
 from layouts.table_layouts import generate_table
 from utils.yahoo import TickerData
 from utils.constants import GENERAL_INFO, TRADING_DATA
-import dash_html_components as html
+from dash import html
 
 
 @app.callback(
