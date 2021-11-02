@@ -33,6 +33,6 @@ FIELD_MAP = {
     'fullTimeEmployees':'Full Time Employees',
     'marketCap':'Market Capitalization',
 }
-TRADING_DATA=['fiftyTwoWeekHigh','fiftyTwoWeekLow','fiftyDayAverage', 'regularMarketVolume','averageDailyVolume10Day', 'volume24Hr']
+TRADING_DATA=['fiftyTwoWeekHigh','fiftyTwoWeekLow','fiftyDayAverage', 'regularMarketVolume','averageDailyVolume10Day']
 GENERAL_INFO=['longName','country','exchange', 'sector','industry', 'fullTimeEmployees', 'marketCap']
 
