@@ -43,6 +43,7 @@ def style_line_chart(fig):
     fig.update_xaxes(showgrid=False)
     fig.update_yaxes(showgrid=False)
     fig.update_traces(line_color='rgb(51, 153, 255)')
+    fig.yaxis_title='$'
 
     return fig
 
