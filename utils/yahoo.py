@@ -23,9 +23,12 @@ class TickerData():
         return self.ticker.history(period='1d', start=start, end=end)
 
     def get_basic_info(self, info:list) -> dict:
-        return {FIELD_MAP[i] : self.ticker.info[i] for i in info if i in FIELD_MAP}
+        return {
+            FIELD_MAP[i] : self.ticker.info[i] 
+            for i in info if i in FIELD_MAP
+        }
     
-    def get_returns(self):
+    def get_returns(self) -> DataFrame:
         df = self.get_prices()
         time_frames = ['7d','1m','3m','6m','1y','3y','5y']
         returns = {}
@@ -38,8 +41,9 @@ class TickerData():
     def get_earnings(self) -> DataFrame:
         return self.ticker.earnings
     
-    def get_recommendations(self)->DataFrame():
+    def get_recommendations(self) -> DataFrame():
         df = self.ticker.recommendations
         this_year_start = np.datetime64(date(date.today().year, 1, 1))
-        return df[df.index > this_year_start].groupby(['To Grade']).size().reset_index(name='counts')
+        return df[df.index > this_year_start].groupby(['To Grade']).size()\
+                                             .reset_index(name='counts')
         

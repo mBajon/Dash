@@ -17,15 +17,20 @@ from dash import html
 def display_tables(selected_stock, children):
     new_element = html.Div([
     html.Div(
-        generate_table(TickerData(selected_stock).get_basic_info(TRADING_DATA), ['Trading Data']),
+        generate_table(
+                       TickerData(selected_stock).get_basic_info(TRADING_DATA),
+                       ['Trading Data']
+        ),
         className = 'table-div-wrapper'
     ),
      html.Div(
-         generate_table(TickerData(selected_stock).get_basic_info(GENERAL_INFO), ['General Info']),
+         generate_table(TickerData(selected_stock).get_basic_info(GENERAL_INFO),
+                       ['General Info']),
         className = 'table-div-wrapper'
     ),
     html.Div(
-        generate_table(TickerData(selected_stock).get_returns(),  ['Returns']),
+        generate_table(TickerData(selected_stock).get_returns(),
+                       ['Returns']),
         className = 'table-div-wrapper'
     )
     ])

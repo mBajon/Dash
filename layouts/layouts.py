@@ -14,6 +14,7 @@ options = [{'label':i[1]['Security'],'value':i[1]['Symbol']} for i in get_ticker
 
 
 layout=html.Div([
+                html.H1('Dash financial dashboard example'),
                 html.Label(' Select dropdown'),
                 dcc.Dropdown(id="stock-name-dropdown",
                                options=options,

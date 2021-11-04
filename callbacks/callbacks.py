@@ -34,16 +34,20 @@ def display_line_chart(selected_stock, time_frame):
     return fig
 
 def style_line_chart(fig):
-    fig=fig
     fig.update_layout(
                     {
-                    'plot_bgcolor': 'rgba(0,0,0,0)',
-                    
-                    })
-    fig.update_xaxes(showgrid=False)
-    fig.update_yaxes(showgrid=False)
+                    'plot_bgcolor' : 'rgba(0,0,0,0)',
+                    'paper_bgcolor':'rgba(0,0,0,0)',
+                    'xaxis': {
+                        'showgrid' : False
+                    },
+                    'yaxis': {
+                        'showgrid' : False,
+                        'title' : '$'
+                    }
+                    }
+)
     fig.update_traces(line_color='rgb(51, 153, 255)')
-    fig.yaxis_title='$'
 
     return fig
 
