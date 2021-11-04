@@ -19,7 +19,7 @@ layout=html.Div([
                 dcc.Dropdown(id="stock-name-dropdown",
                                options=options,
                                value='VTR',
-                               style={'width':'40%'}),
+                               className = 'dropdown'),
                 html.Div(           
                          id='dynamic-tables-container', children = [],
                 ),
