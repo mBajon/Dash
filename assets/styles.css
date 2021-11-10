@@ -21,6 +21,9 @@ H1 {
 .Select-menu-outer {
   background-color: rgb(150, 228, 223);
 }
+.Select-value-label {
+  color: green;
+  }
 
 table{
   width:100%;
