@@ -38,7 +38,7 @@ class TickerData:
     def get_earnings(self) -> DataFrame:
         return self.ticker.earnings
 
-    def get_recommendations(self) -> DataFrame():
+    def get_recommendations(self) -> DataFrame:
         df = self.ticker.recommendations
         this_year_start = np.datetime64(date(date.today().year, 1, 1))
         return (

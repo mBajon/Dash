@@ -57,6 +57,10 @@ class TickerDataTestCase(unittest.TestCase):
 
     def test_get_recommendations(self):
         data = TickerData('VTR').get_recommendations()
+        assert 'To Grade' in list(data.columns)
+        assert 'counts' in list(data.columns)
+        assert ptypes.is_object_dtype(data['To Grade'])
+        assert ptypes.is_int64_dtype(data['counts'])
         self.assertIsInstance(data, pd.DataFrame)
 
         
