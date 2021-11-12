@@ -54,7 +54,13 @@ class TickerDataTestCase(unittest.TestCase):
         self.assertIsInstance(data, pd.DataFrame)
         assert 'Revenue' in list(data.columns)
         assert 'Earnings' in list(data.columns)
-        #print(list(data.columns))
+
+    def test_get_recommendations(self):
+        data = TickerData('VTR').get_recommendations()
+        self.assertIsInstance(data, pd.DataFrame)
+
+        
+        
         
 
 if __name__ == '__main__':
