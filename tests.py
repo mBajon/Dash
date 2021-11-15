@@ -15,6 +15,8 @@ import datetime
 
 
 class TickerDataTestCase(unittest.TestCase):
+    
+    
 
     def test_TickerData(self):
         self.Test_TickerData=TickerData('VTR')

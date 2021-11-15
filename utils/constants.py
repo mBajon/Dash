@@ -1,4 +1,3 @@
-EXTERNAL_STYLESHEETS = []
 MARKS = {
     1: {"label": "5y"},
     2: {"label": "3y"},
@@ -17,7 +16,6 @@ FIELD_MAP = {
     "fiftyDayAverage": "50 Day Average",
     "regularMarketVolume": "Regular Market Volume",
     "averageDailyVolume10Day": "Average Daily Volumne in 10 days",
-    "volume24Hr": "Volume",
     "longName": "Name",
     "country": "Country",
     "exchange": "Exchange",
@@ -42,3 +40,18 @@ GENERAL_INFO = [
     "fullTimeEmployees",
     "marketCap",
 ]
+
+FORMAT_MAP = {
+    "fiftyTwoWeekHigh": "Currency",
+    "fiftyTwoWeekLow": "Currency",
+    "fiftyDayAverage": "Currency",
+    "regularMarketVolume": "Number",
+    "averageDailyVolume10Day": "Number",
+    "longName": "String",
+    "country": "String",
+    "exchange": "String",
+    "sector": "String",
+    "industry": "String",
+    "fullTimeEmployees": "Number",
+    "marketCap": "Currency",
+}
