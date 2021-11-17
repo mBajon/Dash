@@ -1,10 +1,11 @@
 # Dash Financial Dashboard
 
-Simple overview of use/purpose.
+This is a simple financial dashboard made in Dash framework as an exercise.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This project is all about visualizing stock market data that is available in Yahoo API trough Yfinance library.
+You can view total returns for a selected stock from the S&P500 index.
 
 ## Getting Started
 
@@ -15,7 +16,7 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installing
 
-* How/where to download your program
+* git clone https://github.com/mBajon/Dash.git
 * Any modifications needed to be made to files/folders
 
 ### Executing program
@@ -33,30 +34,21 @@ Any advise for common problems or issues.
 command to run if program contains helper info
 ```
 
-## Authors
+## Author
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Maciej Bajon 
+maciej.bajon@wp.pl
 
 ## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is distributed under the Apache Software License. See the LICENSE.md file in the release for details.
 
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [yfinance](https://github.com/ranaroussi/yfinance)
