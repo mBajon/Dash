@@ -19,8 +19,8 @@ You can view total returns for a selected stock from the S&P500 index.
 
 ### Installing
 
-* git clone https://github.com/mBajon/Dash.git
-* pip install requirements.txt
+* run `git clone https://github.com/mBajon/Dash.git`
+* run `pip install requirements.txt`
 
 ### Executing program
 
