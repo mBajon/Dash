@@ -55,3 +55,5 @@ FORMAT_MAP = {
     "fullTimeEmployees": "Number",
     "marketCap": "Currency",
 }
+
+EXPECTED_RESULTS = {'7d': '0.00%', '1m': '0.00%', '3m': '0.00%', '6m': '0.00%', '1y': '0.00%', '3y': '0.00%', '5y': '0.00%'}
