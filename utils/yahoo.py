@@ -10,12 +10,12 @@ from utils.constants import FORMAT_MAP
 from utils.constants import GENERAL_INFO
 import locale
 
-locale.setlocale(locale.LC_ALL, 'en_US')
+locale.setlocale(locale.LC_ALL, "en_US")
+
 
 class TickerData:
     def __init__(self, ticker: str) -> None:
         self.ticker = yf.Ticker(ticker)
-        
 
     def get_prices(self, start: datetime = None, end: datetime = None) -> DataFrame:
         if end is None:
@@ -26,11 +26,15 @@ class TickerData:
         return self.ticker.history(period="1d", start=start, end=end)
 
     def get_basic_info(self, info: list) -> dict:
-        new_info = self.format_fields(self.ticker.info , FORMAT_MAP)
+        new_info = self.format_fields(self.ticker.info, FORMAT_MAP)
         return {FIELD_MAP[i]: new_info[i] for i in info if i in FIELD_MAP}
 
-    def get_returns(self) -> DataFrame:
-        df = self.get_prices()
+    def get_returns(self, df: DataFrame = None) -> DataFrame:
+        if df is None:
+            df = self.get_prices()
+        else:
+            df = df
+
         time_frames = ["7d", "1m", "3m", "6m", "1y", "3y", "5y"]
         returns = {}
         for tf in time_frames:
@@ -53,15 +57,15 @@ class TickerData:
             .size()
             .reset_index(name="counts")
         )
-        
-    def format_fields(self, dictionary : dict, mapping : dict())->dict():
+
+    def format_fields(self, dictionary: dict, mapping: dict()) -> dict():
         dictionary = dictionary
         mapping = mapping
         for i in dictionary:
             if i in mapping:
-                if mapping[i] == 'Currency':
-                    dictionary[i] = locale.currency(dictionary[i], grouping = True)
-                if mapping[i] == 'Number' : 
+                if mapping[i] == "Currency":
+                    dictionary[i] = locale.currency(dictionary[i], grouping=True)
+                if mapping[i] == "Number":
                     dictionary[i] = f"{dictionary[i]:,}"
 
         return dictionary
