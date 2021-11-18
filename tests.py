@@ -4,7 +4,6 @@ import sys
 import pandas as pd
 import numpy as np
 import pandas.api.types as ptypes
-from pandas.testing import assert_frame_equal
 from pandas import util
 from pandas.tseries.offsets import BDay
 
