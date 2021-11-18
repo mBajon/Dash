@@ -19,23 +19,29 @@ from utils.constants import EXPECTED_RESULTS
 
 
 class TickerDataTestCase(unittest.TestCase):
+    
+    @classmethod
+    def setUpClass(cls):
+        cls.ticker_data = TickerData("VTR")
+        cls.prices = cls.ticker_data.get_prices()
+        cls.earnings = cls.ticker_data.get_earnings()
+        cls.recommendations = cls.ticker_data.get_recommendations()
+    
     def test_TickerData(self):
         self.Test_TickerData = TickerData("VTR")
         self.assertIsInstance(self.Test_TickerData, TickerData)
 
     def test_price_data_not_empty(self):
-        data = TickerData("VTR").get_prices()
-        self.assertNotEqual(len(data), 0)
+        self.assertNotEqual(len(self.prices), 0)
 
     def test_price_data_has_close_column(self):
-        data = TickerData("VTR").get_prices()
-        self.assertEqual("Close" in data.columns, True)
+        self.assertEqual("Close" in self.prices.columns, True)
 
     def test_close_price_type(self):
-        assert ptypes.is_float_dtype(TickerData("VTR").get_prices()["Close"])
+        self.assertTrue(ptypes.is_float_dtype(self.prices["Close"]))
 
     def test_index_column_type_is_datetime(self):
-        assert ptypes.is_datetime64_any_dtype(TickerData("VTR").get_prices().index)
+        self.assertTrue(ptypes.is_datetime64_any_dtype(self.prices.index))
 
     def test_correct_price_date_range(self):
         start = pd.Timestamp(2020, 1, 2)
@@ -53,21 +59,20 @@ class TickerDataTestCase(unittest.TestCase):
         self.assertListEqual(keys, EXPECTED_COLUMNS)
 
     def test_get_earnings(self):
-        data = TickerData("VTR").get_earnings()
+        data = self.earnings
         self.assertIsInstance(data, pd.DataFrame)
-        assert "Revenue" in list(data.columns)
-        assert "Earnings" in list(data.columns)
+        self.assertIn("Revenue", list(data.columns))
+        self.assertIn("Earnings", list(data.columns))
 
     def test_get_recommendations(self):
-        data = TickerData("VTR").get_recommendations()
-        assert "To Grade" in list(data.columns)
-        assert "counts" in list(data.columns)
-        assert ptypes.is_object_dtype(data["To Grade"])
-        assert ptypes.is_int64_dtype(data["counts"])
+        data = self.recommendations
+        self.assertIn("To Grade", list(data.columns))
+        self.assertIn("counts", list(data.columns))
+        self.assertTrue(ptypes.is_object_dtype(data["To Grade"]))
+        self.assertTrue(ptypes.is_int64_dtype(data["counts"]))
         self.assertIsInstance(data, pd.DataFrame)
 
     def test_ticker_returns(self):
-
         end = datetime.date.today()
         start = end - relativedelta(years=5)
         index = pd.date_range(start=start, end=end)
@@ -81,6 +86,7 @@ class TickerDataTestCase(unittest.TestCase):
         for i in FRAMES:
             y = df.last(i).index[0]
             df.loc[y, ["Close"]] = 1
+
 
         results = TickerData("VTR").get_returns(df)
         self.assertDictEqual(results, EXPECTED_RESULTS)
