@@ -12,7 +12,7 @@ You can view total returns for a selected stock from the S&P500 index.
 ### Dependencies
 
 * Python >= 2.7, 3.4+
-* Pandas (tested to work with >=0.23.1)
+* Pandas >=0.23.1
 * Numpy >= 1.11.1
 * requests >= 2.14.2
 * lxml >= 4.5.1
