@@ -1,24 +1,16 @@
-import itertools
 import unittest
-import sys
 import pandas as pd
 import numpy as np
 import pandas.api.types as ptypes
-from pandas import util
-from pandas.tseries.offsets import BDay
-
-sys.path.append("../")
-from utils.yahoo import TickerData
-import datetime
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import datetime
 from pandas import DataFrame
+from utils.yahoo import TickerData
 from utils.constants import EXPECTED_RESULTS
 
 
 class TickerDataTestCase(unittest.TestCase):
-    
     @classmethod
     def setUpClass(cls):
         cls.ticker_data = TickerData("VTR")
