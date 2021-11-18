@@ -59,8 +59,6 @@ class TickerData:
         )
 
     def format_fields(self, dictionary: dict, mapping: dict()) -> dict():
-        dictionary = dictionary
-        mapping = mapping
         for i in dictionary:
             if i in mapping:
                 if mapping[i] == "Currency":
